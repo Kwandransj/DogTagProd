@@ -1,2 +1,0 @@
-﻿  Drag and Drop.cpp
-C:\Users\expressed\Desktop\click\click\click\Drag and Drop\Drag and Drop.cpp(123,16): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
