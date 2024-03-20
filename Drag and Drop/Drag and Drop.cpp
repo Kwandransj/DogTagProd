@@ -18,7 +18,7 @@ using namespace std;
 void produce_column(void);
 void produce_tag(string order_id, string asin, string sku, string pet_name, string line1, string line2, string line3, string line4, bool line1found, bool line2found, bool line3found, bool line4found, int lines_found, int start_index, bool website, bool quantity);
 unsigned int num_Variations = 42;
-
+bool debug_Mode = false;
 
 vector<string> split(const string& str, const string& delim)
 {
@@ -260,8 +260,9 @@ void produce_column(void) {
     
     string basepath = "M:\\DogCollarTagProduction\\ActiveEngraving";
     string path = "M:\\DogCollarTagProduction\\ActiveEngraving\\" + month + "\\" + mon + "-" + to_string(timeinfo->tm_mday);
-    
-    /*cout << apath << " " << wpath << "\n";*/
+    if (debug_Mode == true) {
+        cout << apath << " " << wpath << "\n";
+    }
     list_dir(path.c_str());
     string prev_prev_line;
     string prev_line;
@@ -459,12 +460,12 @@ bool quantity;
 
             while (!tag_complete) {
                 string quantity_Num;
-                //cout << cur_line << "\n";
+                if (debug_Mode == true) cout << cur_line << "\n";
                 if (inFile.eof()) break;
-                //cout << cur_line << "\n";
+                if (debug_Mode == true) cout << cur_line << "\n";
                 if (prev_line == "Totals" ) {
                     int quantityInt = atoi(cur_line.c_str());
-                    /*cout << quantityInt << "\n";*/
+                    if (debug_Mode == true) cout << quantityInt << "\n";
                     if (quantityInt > 1){
                         quantity = true;
                     }
@@ -705,7 +706,7 @@ bool quantity;
             } else {
                 line4found = false;
             }
-            /*cout << sku << "\n";*/;
+            if (debug_Mode == true) cout << sku << "\n";
         }
         webdata.close();
         /*if (remove(webfname.c_str()) != 0)
