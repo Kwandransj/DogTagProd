@@ -181,7 +181,7 @@ int main() {
 
     variations.resize(43);
     datavec.resize(43);
-    for (int i = 0; i < variations.size(); i++) {
+    for (unsigned int i = 0; i < variations.size(); i++) {
         variations.at(i) = 1;
     }
     sizes.push_back("XS");
@@ -273,11 +273,8 @@ void produce_column(void) {
     string line2 = " ";
     string line3 = " ";
     string line4 = " ";
-    bool id_found = false;
-    bool asin_found = false;
     bool tag_complete = false;
     bool check_nums = false;
-    int name_counter = 0;
     int start_index = 0;
     int lines_found = 0;
     int tags_in_order = 0;
@@ -285,7 +282,6 @@ void produce_column(void) {
     bool line2found = false;
     bool line3found = false;
     bool line4found = false;
-    int total_tags = 0;
 
     ifstream inFile;
 
@@ -472,7 +468,6 @@ bool quantity;
 
 
         inFile >> cur_line;
-        bool tags_left;
         bool website = false;
         while (!inFile.eof()) {
 
@@ -619,7 +614,6 @@ bool quantity;
 
             lines_found = 0;
 
-            id_found = false;
             check_nums = false;
 
             order_id = "";
@@ -682,9 +676,7 @@ bool quantity;
 
 
 
-        bool website = true;
-        int w_num = 1;
-        for (int i = 1; i < webCsv.size(); i++) {
+        for (unsigned int i = 1; i < webCsv.size(); i++) {
             order_id = webCsv[i][0];
             asin = "website";
             sku = webCsv[i][2];
@@ -745,11 +737,11 @@ bool quantity;
 
     engrave << "Tag Number," << "Daily Number," << "SKU," << "Pet's Name," << "Line 1," << "Line 2," << "Line 3," << "Line 4" << "\n";
 
-    int ind = 1;
-    for (int i = 0; i < datavec.size(); i++) {
-        for (int j = 0; j < datavec.at(i).size(); j++) {
+    unsigned int ind = 1;
+    for (unsigned int i = 0; i < datavec.size(); i++) {
+        for (unsigned int j = 0; j < datavec.at(i).size(); j++) {
             engrave << ind << ",";
-            for (int k = 0; k < datavec[i][j].size(); k++) {
+            for (unsigned int k = 0; k < datavec[i][j].size(); k++) {
                 std::string str2(datavec[i][j][k].size(), '0');
                 str2.erase(std::remove_copy(datavec[i][j][k].begin(), datavec[i][j][k].end(), str2.begin(), ','), str2.end());
                 engrave << str2 << ",";
@@ -1528,7 +1520,7 @@ top:
         flag = "FLAG NON ASCII CHARS FOUND CHECK PACK SLIP";
 
 
-    for (int i = 0; i < sizeof(hang) / sizeof(hang[0]); i++) {
+    for (unsigned int i = 0; i < sizeof(hang) / sizeof(hang[0]); i++) {
         if (line1.find(hang[i]) != std::string::npos)
         {
             line1hang = true;

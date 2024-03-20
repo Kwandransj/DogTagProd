@@ -1,4 +1,0 @@
-﻿1>------ Build started: Project: Drag and Drop, Configuration: Debug Win32 ------
-1>Drag and Drop.cpp
-1>Drag and Drop.vcxproj -> C:\Users\bryan\OneDrive\Desktop\Pdf-To-Column\drag\Drag and Drop\Debug\Drag and Drop.exe
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
