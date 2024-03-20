@@ -1,0 +1,2 @@
+pdftotext -layout Amazon.pdf
+

@@ -1,0 +1,4 @@
+﻿  InventoryManagement.cpp
+C:\Users\bryan\OneDrive\Desktop\Pdf-To-Column\inventory_managment\InventoryManagement\InventoryManagement\InventoryManagement.cpp(129,40): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\bryan\OneDrive\Desktop\Pdf-To-Column\inventory_managment\InventoryManagement\x64\Debug\InventoryManagement.exe : fatal error LNK1120: 1 unresolved externals
