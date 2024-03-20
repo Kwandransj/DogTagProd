@@ -18,7 +18,7 @@ using namespace std;
 void produce_column(void);
 void produce_tag(string order_id, string asin, string sku, string pet_name, string line1, string line2, string line3, string line4, bool line1found, bool line2found, bool line3found, bool line4found, int lines_found, int start_index, bool website, bool quantity);
 unsigned int num_Variations = 42;
-bool debug_Mode = false;
+
 
 vector<string> split(const string& str, const string& delim)
 {
@@ -168,10 +168,16 @@ void list_dir(const char* path) {
     }
     return;
 }
-int main() {
+int main(int argc, char* argv[]) {
 
+bool debug_Mode = false;
 
-
+    if (argc > 1) {
+        if (argv[1] == "true") {
+            bool debug_Mode = true;
+        }
+    }
+    
 
     // strftime(buffer, 80, "%d-%m-%Y %I:%M:%S", timeinfo);
     // std::string str(buffer);
