@@ -1477,7 +1477,7 @@ top:
 
     vector<string> forbidden = { "Grand", "1", "2", "Returning", "Line" };
 
-    for (int i = 0; i < forbidden.size(); i++) {
+    for (unsigned int i = 0; i < forbidden.size(); i++) {
 
         if (line1 == forbidden[i]) {
             line1found = false;
