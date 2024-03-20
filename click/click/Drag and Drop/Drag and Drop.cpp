@@ -260,7 +260,7 @@ void produce_column(void) {
     string basepath = "M:\\DogCollarTagProduction\\ActiveEngraving";
     string path = "M:\\DogCollarTagProduction\\ActiveEngraving\\" + month + "\\" + mon + "-" + to_string(timeinfo->tm_mday);
     
-    cout << apath << " " << wpath << "\n";
+    /*cout << apath << " " << wpath << "\n";*/
     list_dir(path.c_str());
     string prev_prev_line;
     string prev_line;
@@ -302,7 +302,7 @@ void produce_column(void) {
     strftime(buffer, sizeof(buffer), "%d-%m-%Y", timeinfo);
     std::string str(buffer);
 
-    std::cout << str << "\n";
+    /*std::cout << str << "\n";*/
 
     string fname = path + "\\" + str + "-copy_column.txt";
     string sname = path + "\\" + str + "-script.scr";
@@ -478,7 +478,7 @@ bool quantity;
                 //cout << cur_line << "\n";
                 if (prev_line == "Totals" ) {
                     int quantityInt = atoi(cur_line.c_str());
-                    cout << quantityInt << "\n";
+                    /*cout << quantityInt << "\n";*/
                     if (quantityInt > 1){
                         quantity = true;
                     }
