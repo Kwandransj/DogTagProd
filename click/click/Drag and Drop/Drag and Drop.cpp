@@ -17,6 +17,7 @@
 using namespace std;
 void produce_column(void);
 void produce_tag(string order_id, string asin, string sku, string pet_name, string line1, string line2, string line3, string line4, bool line1found, bool line2found, bool line3found, bool line4found, int lines_found, int start_index, bool website, bool quantity);
+unsigned int num_Variations = 42;
 
 
 vector<string> split(const string& str, const string& delim)
@@ -179,8 +180,8 @@ int main() {
 
 
 
-    variations.resize(43);
-    datavec.resize(43);
+    variations.resize(num_Variations + 1);
+    datavec.resize(num_Variations + 1);
     for (unsigned int i = 0; i < variations.size(); i++) {
         variations.at(i) = 1;
     }
@@ -448,22 +449,7 @@ bool quantity;
         std::system("pdftotext -layout amazon.pdf");
 
 
-
-
         inFile.open(basepath + "\\Amazon.txt");
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -755,9 +741,12 @@ bool quantity;
     automate << "inputbox, color, Enter Desired Colors #, Black being 3 blue being 6 orange being 1 grey being 2 white being 4 pink being 5"<< "\n";
     automate << "if ErrorLevel" << "\n";
     automate << "\t" << "color = 3" << "\n";
+
     automate << "^q::" << "\n";
     automate << "Sleep, 100" << "\n";
     automate << "MsgBox, Check your hatch settings" << "\n";
+
+    /* Color Change*/
     automate << "if(color = 3 and inc = 1)" << "\n";
     automate << "\t" << "MsgBox, Engraving Black Please Change the Setting to..." << "\n";
     automate << "if(color = 1 and inc > " << orange << ")" << "\n";
@@ -810,7 +799,7 @@ bool quantity;
 
 
 
-
+/* Go To Next Size For Color */
     automate << "\tsize:=1" << "\n";
     automate << "\tsizeinc:=1" << "\n";
     automate << "}" << "\n";
@@ -1090,7 +1079,7 @@ bool quantity;
     automate << "\tcurpos:=3.35" << "\n";
     automate << "}" << "\n";
 
-
+/* Load DXF Files Into Workspace */
     automate << "Send, ^b" << "\n";
     automate << "Sleep, 400" << "\n";
 
@@ -1350,6 +1339,7 @@ bool quantity;
     automate << "\tTarget := \"XL\"" << "\n";
     automate << "}" << "\n";
 
+/* Hatch and Position DXF Files */
 
     automate << "Send, {Enter}" << "\n";
     automate << "Sleep, 100" << "\n";
@@ -1385,9 +1375,7 @@ bool quantity;
     automate << "\t}" << "\n";
     automate << "}" << "\n";
 
-
-    
-
+/* Go To Next Color*/
 
     automate << "if(inc = " << orange << " and color = 1)" << "\n";
     automate << "{" << "\n";
@@ -1431,15 +1419,7 @@ bool quantity;
     automate << "\tcurpos:=3.35" << "\n";
     automate << "}" << "\n";
 
-
-
-
-
-
-
-
-
-
+/* Supporting Functions For Placement*/
 
     automate << "inc := inc + 1" << "\n";
     automate << "sizeinc := sizeinc + 1" << "\n";
@@ -1467,6 +1447,8 @@ bool quantity;
     automate << "}" << "\n";
     automate << "return" << "\n";
 
+/* Debug Mode */
+
     automate << "^l::\n";
     automate << "msgbox, TagNo: %inc% Color: %color% Size: %size% SizeNo: %sizeinc%" << "\n";
     automate << "return" << "\n";
@@ -1491,34 +1473,25 @@ top:
     bool line4hang = false;
     bool namehang = false;
     string flag = " ";
+/* Checking For Forbidden Phrases*/
 
-    if (line1 == "Grand" || line1 == "1" || line1 == "2" || line1 == "Returning" || line1 == "Line") {
-        flag = "FLAG SCRIPT PHRASES CONTAINED CHECK PACK SLIP";
-    }
-    if (line2 == "Grand" || line2 == "1" || line2 == "2" || line2 == "Returning" || line2 == "Line") {
-        flag = "FLAG SCRIPT PHRASES CONTAINED CHECK PACK SLIP";
-    }
-    if (line3 == "Grand" || line3 == "1" || line3 == "2" || line3 == "Returning" || line3 == "Line") {
-        flag = "FLAG SCRIPT PHRASES CONTAINED CHECK PACK SLIP";
-    }
-    if (line4 == "Grand" || line4 == "1" || line4 == "2" || line4 == "Returning" || line4 == "Line") {
-        flag = "FLAG SCRIPT PHRASES CONTAINED CHECK PACK SLIP";
-    }
-    if (pet_name == "Grand" || pet_name == "1" || pet_name == "2" || pet_name == "Returning" || pet_name == "Line") {
-        flag = "FLAG SCRIPT PHRASES CONTAINED CHECK PACK SLIP";
-    }
+    vector<string> forbidden = { "Grand", "1", "2", "Returning", "Line" };
 
-    if(containsOnlyASCII(line1)==false)
-        flag = "FLAG NON ASCII CHARS FOUND CHECK PACK SLIP";
-    if (containsOnlyASCII(line2) == false)
-        flag = "FLAG NON ASCII CHARS FOUND CHECK PACK SLIP";
-    if (containsOnlyASCII(line3) == false)
-        flag = "FLAG NON ASCII CHARS FOUND CHECK PACK SLIP";
-    if (containsOnlyASCII(line4) == false)
-        flag = "FLAG NON ASCII CHARS FOUND CHECK PACK SLIP";
-    if (containsOnlyASCII(pet_name) == false)
-        flag = "FLAG NON ASCII CHARS FOUND CHECK PACK SLIP";
+    for (int i = 0; i < forbidden.size(); i++) {
 
+        if (line1 == forbidden[i]) {
+            line1found = false;
+        }
+        if (line2 == forbidden[i]) {
+            line2found = false;
+        }
+        if (line3 == forbidden[i]) {
+            line3found = false;
+        }
+        if (line4 == forbidden[i]) {
+            line4found = false;
+        }
+    }
 
     for (unsigned int i = 0; i < sizeof(hang) / sizeof(hang[0]); i++) {
         if (line1.find(hang[i]) != std::string::npos)
@@ -1615,7 +1588,6 @@ top:
     }
 
 
-
     char start_char;
     if (website) {
         start_char = 'W';
@@ -1623,6 +1595,8 @@ top:
     else {
         start_char = 'A';
     }
+
+/* Engrave.csv File Creation */
 
     csvfile << "Order ID: # " << order_id << "\n";
     csvfile << start_char << start_index << "\n\n\n";
@@ -1637,7 +1611,6 @@ top:
     csvfile << "Line 2: " << line2 << "\n";
     csvfile << "Line 3: " << line3 << "\n";
     csvfile << "Line 4: " << line4 << "\n";
-
     csvfile << "\n";
 
 
@@ -1647,6 +1620,8 @@ top:
     int size = 0;
     int color_num = 0;
     int variation_num;
+
+    /* Color Split */
 
     if (split(sku,"-")[0]  == "O") {
         orange++;
@@ -1689,6 +1664,8 @@ top:
     }
 
     int x = 0;
+
+/* Size Split */
 
     if (split(sku,"-")[1]  == "XS") {
         size = 0;
@@ -1750,33 +1727,35 @@ top:
     std::string linex;
     float height_scaler = 0.25;
 
-    if (namehang) {
-        line = parsedCsv[1][x];
-        linex = line.substr(line.find(",") + 1);
-        linex = linex.substr(linex.find(",") + 1);
-        pos = stof(linex);
+    if (pet_name != " ") {
+        if (namehang) {
+            line = parsedCsv[1][x];
+            linex = line.substr(line.find(",") + 1);
+            linex = linex.substr(linex.find(",") + 1);
+            pos = stof(linex);
 
 
-        std::string toReplace(linex);
-        size_t posit = line.find(toReplace);
+            std::string toReplace(linex);
+            size_t posit = line.find(toReplace);
 
-        while (line.back() != ',')
-            line.pop_back();
-        pos = pos + stof(heights[2][x + 1]) * height_scaler;
-        line = line + to_string(pos);
-        line.replace(posit, toReplace.length(), to_string(pos));
-        script << line;
+            while (line.back() != ',')
+                line.pop_back();
+            pos = pos + stof(heights[2][x + 1]) * height_scaler;
+            line = line + to_string(pos);
+            line.replace(posit, toReplace.length(), to_string(pos));
+            script << line;
 
-        script << " " << heights[2][x + 1] << " ";
+            script << " " << heights[2][x + 1] << " ";
+        }
+        else {
+            script << parsedCsv[1][x];
+            script << " " << heights[1][x + 1] << " ";
+        }
     }
     else {
         script << parsedCsv[1][x];
-        script << " " << heights[1][x + 1] << " ";
     }
-
     script << pet_name << "\n";
-
-
 
 
 
@@ -1814,7 +1793,6 @@ top:
     }
     script << line1 << "\n";
 
-
     if (line2 != " ") {
         if (line2hang) {
             line = parsedCsv[3][x];
@@ -1845,7 +1823,6 @@ top:
     }
     script << line2 << "\n";
 
-
     if (line3 != " ") {
         if (line3hang) {
             line = parsedCsv[4][x];
@@ -1874,7 +1851,6 @@ top:
         script << parsedCsv[4][x];
     }
     script << line3 << "\n";
-
 
     if (line4 != " ") {
         if (line4hang) {
@@ -1905,6 +1881,7 @@ top:
     }
     script << line4 << "\n";
 
+/* Copy Save And Delete DXF */
 
     script << parsedCsv[6][x] << "\n";
     script << parsedCsv[7][x] << "\n";
