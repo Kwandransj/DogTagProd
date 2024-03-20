@@ -446,7 +446,7 @@ bool quantity;
         else
             perror("Error renaming file");
 
-        std::system("pdftotext -layout amazon.pdf");
+        std::system(".\pdftotext -layout amazon.pdf");
 
 
         inFile.open(basepath + "\\Amazon.txt");
