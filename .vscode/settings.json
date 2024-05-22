@@ -50,5 +50,7 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "C:/Users/kwand/Documents/GitHub/DogTagProd/",
+    "c-cpp-compile-run.cpp-flags":"-Wall --static"
 }

@@ -1,8 +1,0 @@
-﻿  Drag and Drop.cpp
-M:\DogCollarTagProduction\ActiveEngraving\click\click\click\Drag and Drop\Drag and Drop.cpp(161,23): warning C4018: '<': signed/unsigned mismatch
-M:\DogCollarTagProduction\ActiveEngraving\click\click\click\Drag and Drop\Drag and Drop.cpp(652,27): warning C4018: '<': signed/unsigned mismatch
-M:\DogCollarTagProduction\ActiveEngraving\click\click\click\Drag and Drop\Drag and Drop.cpp(729,23): warning C4018: '<': signed/unsigned mismatch
-M:\DogCollarTagProduction\ActiveEngraving\click\click\click\Drag and Drop\Drag and Drop.cpp(730,27): warning C4018: '<': signed/unsigned mismatch
-M:\DogCollarTagProduction\ActiveEngraving\click\click\click\Drag and Drop\Drag and Drop.cpp(732,31): warning C4018: '<': signed/unsigned mismatch
-M:\DogCollarTagProduction\ActiveEngraving\click\click\click\Drag and Drop\Drag and Drop.cpp(450,14): warning C4101: 'tags_left': unreferenced local variable
-  Drag and Drop.vcxproj -> M:\DogCollarTagProduction\ActiveEngraving\click\click\click\Debug\Drag and Drop.exe

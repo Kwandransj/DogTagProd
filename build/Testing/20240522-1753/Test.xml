@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="Win32-mingw32-make"
+	BuildStamp="20240522-1753-Experimental"
+	Name="Josh-Laptop"
+	Generator="ctest-3.29.3"
+	CompilerName="C:/msys64/mingw64/bin/g++.exe"
+	CompilerVersion="13.2.0"
+	OSName="Windows"
+	Hostname="Josh-Laptop"
+	OSRelease=" Personal"
+	OSVersion=" (Build 22631)"
+	OSPlatform="AMD64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="5"
+	ProcessorCacheSize="-1"
+	NumberOfLogicalCPU="12"
+	NumberOfPhysicalCPU="6"
+	TotalVirtualMemory="37493"
+	TotalPhysicalMemory="32629"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2592"
+	>
+	<Testing>
+		<StartDateTime>May 22 14:22 Eastern Daylight Time</StartDateTime>
+		<StartTestTime>1716402158</StartTestTime>
+		<TestList/>
+		<EndDateTime>May 22 14:22 Eastern Daylight Time</EndDateTime>
+		<EndTestTime>1716402158</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

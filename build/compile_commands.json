@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/kwand/Documents/GitHub/DogTagProd/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe   -g -o CMakeFiles\\ATagCreator.dir\\ATagCreator.cpp.obj -c C:\\Users\\kwand\\Documents\\GitHub\\DogTagProd\\ATagCreator.cpp",
+  "file": "C:/Users/kwand/Documents/GitHub/DogTagProd/ATagCreator.cpp",
+  "output": "CMakeFiles/ATagCreator.dir/ATagCreator.cpp.obj"
+}
+]
