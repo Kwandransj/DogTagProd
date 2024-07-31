@@ -67,7 +67,7 @@ int blue = 0;
 int orangeBasic = 0;
 string color;
 int number;
-bool run_amazon = false;
+bool run_amazon = true;
 bool run_website = false;
 bool hasEnding(std::string const &fullString, std::string const &ending)
 {
@@ -594,7 +594,7 @@ void produce_column(void)
                     tags_in_order = 0;
                 }
 
-                if (prev_line == "Slide")
+                if (prev_line == "Dog" && cur_line == "ID")
                 {
                     tags_in_order++;
                     if (tags_in_order > 1)

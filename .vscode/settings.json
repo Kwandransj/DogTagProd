@@ -51,6 +51,6 @@
         "streambuf": "cpp",
         "typeinfo": "cpp"
     },
-    "cmake.sourceDirectory": "C:/Users/kwand/Documents/GitHub/DogTagProd/",
+    "cmake.sourceDirectory": "C:/Users/kwand/Documents/GitHub/DogTagProd/Dependencies(MUST BE IN FOLDER TO RUN)",
     "c-cpp-compile-run.cpp-flags":"-Wall --static"
 }
