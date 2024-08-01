@@ -37,17 +37,17 @@ std::ofstream csvfile;
 std::ofstream script;
 std::ofstream automate;
 char hang[] = {'Q', 'q', ',', '(', ')', '@'};
-std::vector<std::vector<std::string>> orangeBasic_data;
-std::vector<std::vector<std::string>> blue_data;
-std::vector<std::vector<std::string>> orange_data;
-std::vector<std::vector<std::string>> grey_data;
-std::vector<std::vector<std::string>> white_data;
-std::vector<std::vector<std::string>> black_data;
-std::vector<std::vector<std::string>> pink_data;
+std::vector<std::vector<std::string> > orangeBasic_data;
+std::vector<std::vector<std::string> > blue_data;
+std::vector<std::vector<std::string> > orange_data;
+std::vector<std::vector<std::string> > grey_data;
+std::vector<std::vector<std::string> > white_data;
+std::vector<std::vector<std::string> > black_data;
+std::vector<std::vector<std::string> > pink_data;
 std::vector<int> variations;
 std::vector<std::string> sizes;
 
-std::vector<std::vector<std::vector<std::string>>> datavec;
+std::vector<std::vector<std::vector<std::string> > > datavec;
 string month;
 string mon;
 struct tm *timeinfo;
@@ -55,8 +55,8 @@ struct tm *timeinfo;
 string wpath = "";
 string apath = "";
 
-std::vector<std::vector<std::string>> parsedCsv;
-std::vector<std::vector<std::string>> heights;
+std::vector<std::vector<std::string> > parsedCsv;
+std::vector<std::vector<std::string> > heights;
 
 int orange = 0;
 int white = 0;
@@ -67,7 +67,7 @@ int blue = 0;
 int orangeBasic = 0;
 string color;
 int number;
-bool run_amazon = true;
+bool run_amazon = false;
 bool run_website = false;
 bool hasEnding(std::string const &fullString, std::string const &ending)
 {
@@ -317,8 +317,8 @@ void produce_column(void)
     string sname = path + "\\" + str + "-script.scr";
     char outname[1024];
     char soutname[1024];
-    strcpy_s(outname, fname.c_str());
-    strcpy_s(soutname, sname.c_str());
+    strcpy(outname, fname.c_str());
+    strcpy(soutname, sname.c_str());
     csvfile.open(outname);
     script.open(soutname);
     std::ofstream engrave(path + "\\" + str + "engrave.csv");
@@ -446,7 +446,7 @@ void produce_column(void)
         string old = path + "\\" + apath;
 
         char oldname[1024];
-        strcpy_s(oldname, old.c_str());
+        strcpy(oldname, old.c_str());
 
         result = rename(oldname, (basepath + "\\Amazon.pdf").c_str());
         if (result == 0)
@@ -466,7 +466,7 @@ void produce_column(void)
             while (!tag_complete)
             {
                 string quantity_Num;
-                // cout << cur_line << "\n";
+                 cout << cur_line << "\n";
                 if (inFile.eof())
                     break;
                 // cout << cur_line << "\n";
@@ -659,7 +659,7 @@ void produce_column(void)
 
         std::ifstream webdata(webfname);
         std::string webline;
-        std::vector<std::vector<std::string>> webCsv;
+        std::vector<std::vector<std::string> > webCsv;
         while (std::getline(webdata, webline))
         {
             std::stringstream lineStream(webline);

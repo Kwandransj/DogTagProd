@@ -1,25 +1,35 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "macos-clang-arm64",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${vcpkgRoot}/x86-windows/include"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "windowsSdkVersion": "10.0.19041.0",
+            "cStandard": "${default}",
+            "cppStandard": "${default}",
+            "intelliSenseMode": "macos-gcc-x64",
+            "compilerPath": "/usr/bin/gcc"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${vcpkgRoot}/x86-windows/include",
+                "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
             "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
-            "configurationProvider": "ms-vscode.cmake-tools",
-            "compilerArgs": [
-                "-static"
-            ]
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4
