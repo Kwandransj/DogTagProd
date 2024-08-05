@@ -1,0 +1,61 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "17dbafe6dce4aacdcfecebae801c7d10a0d84589a61bb587abcc1536ab1d7c47"
+    }
+  ],
+  "containerPath" : "/Users/kwandransj/Documents/DogTagProd/DogTagProd.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx14.5",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData/DogTagProd/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData/DogTagProd/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData/DogTagProd/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData/DogTagProd/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData/DogTagProd/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData/DogTagProd/Build/Products",
+      "pchPath" : "/Users/kwandransj/Documents/DogTagProd/DerivedData/DogTagProd/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
