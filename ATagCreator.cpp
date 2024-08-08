@@ -1,5 +1,5 @@
 #include <iostream>
-#include <dirent.h>
+#include "dirent.h"
 #include <sys/types.h>
 #include <string>
 #include <fstream>
@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <array>
 #include <ctime>
+#include <Windows.h>
 
 using namespace std;
 void produce_column(void);
@@ -108,7 +109,7 @@ void list_dir(const char *path)
 
         if (dir == NULL)
         {
-            cout << "Error: Directory does not exist\n";
+            std::cout << "Error: Directory does not exist\n";
             cin.ignore();
         }
         while ((entry = readdir(dir)) != NULL)
@@ -132,13 +133,13 @@ void list_dir(const char *path)
                 }
                 if (pdfCount > 1)
                 {
-                    cout << "Error: Too many pdf files found upload only 1 file and press enter to try again\n";
+                    std::cout << "Error: Too many pdf files found upload only 1 file and press enter to try again\n";
                     err = true;
                     run_amazon = false;
                 }
                 if (csvCount > 1)
                 {
-                    cout << "Error: Too many csvfiles found upload only 1 file and press enter to try again\n";
+                    std::cout << "Error: Too many csvfiles found upload only 1 file and press enter to try again\n";
                     err = true;
                     run_website = false;
                 }
@@ -148,11 +149,11 @@ void list_dir(const char *path)
 
         if (csvCount == 0)
         {
-            cout << "No website file found\n";
+            std::cout << "No website file found\n";
         }
         if (pdfCount == 0)
         {
-            cout << "No amazon file found\n";
+            std::cout << "No amazon file found\n";
         }
         if (csvCount == 0 && pdfCount == 0)
         {
@@ -181,7 +182,7 @@ int main()
     // strftime(buffer, 80, "%d-%m-%Y %I:%M:%S", timeinfo);
     // std::string str(buffer);
 
-    // std::cout << str;
+    // std::std::cout << str;
 
     variations.resize(43);
     datavec.resize(43);
@@ -274,7 +275,7 @@ void produce_column(void)
     string basepath = "M:\\DogCollarTagProduction\\ActiveEngraving";
     string path = "M:\\DogCollarTagProduction\\ActiveEngraving\\" + month + "\\" + mon + "-" + to_string(timeinfo->tm_mday);
 
-    /*cout << apath << " " << wpath << "\n";*/
+    /*std::cout << apath << " " << wpath << "\n";*/
     list_dir(path.c_str());
     string prev_prev_line;
     string prev_line;
@@ -311,14 +312,14 @@ void produce_column(void)
     strftime(buffer, sizeof(buffer), "%d-%m-%Y", timeinfo);
     std::string str(buffer);
 
-    /*std::cout << str << "\n";*/
+    /*std::std::cout << str << "\n";*/
 
     string fname = path + "\\" + str + "-copy_column.txt";
     string sname = path + "\\" + str + "-script.scr";
     char outname[1024];
     char soutname[1024];
-    strcpy(outname, fname.c_str());
-    strcpy(soutname, sname.c_str());
+    strcpy_s(outname, fname.c_str());
+    strcpy_s(soutname, sname.c_str());
     csvfile.open(outname);
     script.open(soutname);
     std::ofstream engrave(path + "\\" + str + "engrave.csv");
@@ -446,7 +447,7 @@ void produce_column(void)
         string old = path + "\\" + apath;
 
         char oldname[1024];
-        strcpy(oldname, old.c_str());
+        strcpy_s(oldname, old.c_str());
 
         result = rename(oldname, (basepath + "\\Amazon.pdf").c_str());
         if (result == 0)
@@ -454,7 +455,18 @@ void produce_column(void)
         else
             perror("Error renaming file");
 
-        std::system("pdftotext -layout amazon.pdf");
+        // puts("Next Line Is PDFPLUMBER");
+
+        // Sleep(2500);
+        if (std::system(".\\pdftotext -table M:\\DogCollarTagProduction\\ActiveEngraving\\Amazon.pdf") == 0)
+        {
+            puts("PDFPlumber Success");
+        }
+        else
+        {
+            perror("PDFPlumber Failed");
+        };
+        // std::system("echo confirm");
 
         inFile.open(basepath + "\\Amazon.txt");
 
@@ -462,18 +474,18 @@ void produce_column(void)
         bool website = false;
         while (!inFile.eof())
         {
-
+            // std::cout << cur_line << "\n";
             while (!tag_complete)
             {
                 string quantity_Num;
-                 cout << cur_line << "\n";
+                 // std::cout << cur_line << "\n";
                 if (inFile.eof())
                     break;
-                // cout << cur_line << "\n";
+                // std::cout << cur_line << "\n";
                 if (prev_line == "Totals")
                 {
                     int quantityInt = atoi(cur_line.c_str());
-                    /*cout << quantityInt << "\n";*/
+                    /*std::cout << quantityInt << "\n";*/
                     if (quantityInt > 1)
                     {
                         quantity = true;
@@ -501,11 +513,17 @@ void produce_column(void)
                 if (prev_line == "Name:" && prev_prev_line == "Pet")
                 {
                     pet_name = cur_line;
+                    // **DEBUG  Turn OFF** //
+                  /*  if (pet_name == "SAMMIE")
+                    {
+                        cout << "SAMMIE\n";
+                    } */
                     while (cur_line != "Line" && cur_line != "Grand" && cur_line != "Returning" && cur_line != "1" && cur_line != "2")
                     {
                         prev_prev_line = prev_line;
                         prev_line = cur_line;
                         inFile >> cur_line;
+                        // cout << "Pet Name:" + cur_line << "\n";
 
                         if (cur_line != "Line" && cur_line != "Grand" && cur_line != "Returning" && cur_line != "1" && cur_line != "2")
                         {
@@ -524,6 +542,7 @@ void produce_column(void)
                         prev_prev_line = prev_line;
                         prev_line = cur_line;
                         inFile >> cur_line;
+                        // cout << "Line 1:" + cur_line << "\n";
 
                         if (cur_line != "Line" && cur_line != "Grand" && cur_line != "Returning" && cur_line != "1" && cur_line != "2")
                         {
@@ -542,6 +561,7 @@ void produce_column(void)
                         prev_prev_line = prev_line;
                         prev_line = cur_line;
                         inFile >> cur_line;
+                        // cout << "Line 2:" + cur_line << "\n";
 
                         if (cur_line != "Line" && cur_line != "Grand" && cur_line != "Returning" && cur_line != "1" && cur_line != "2")
                         {
@@ -560,6 +580,7 @@ void produce_column(void)
                         prev_prev_line = prev_line;
                         prev_line = cur_line;
                         inFile >> cur_line;
+                        // cout << "Line 3:" + cur_line << "\n";
 
                         if (cur_line != "Line" && cur_line != "Grand" && cur_line != "Returning" && cur_line != "1" && cur_line != "2")
                         {
@@ -578,6 +599,7 @@ void produce_column(void)
                         prev_prev_line = prev_line;
                         prev_line = cur_line;
                         inFile >> cur_line;
+                        // cout << "Line 4:" + cur_line << "\n";
 
                         if (cur_line != "Line" && cur_line != "Grand" && cur_line != "Returning" && cur_line != "1" && cur_line != "2")
                         {
@@ -655,7 +677,7 @@ void produce_column(void)
     if (run_website)
     {
         string webfname = path + "\\" + wpath;
-        cout << webfname << "\n";
+        std::cout << webfname << "\n";
 
         std::ifstream webdata(webfname);
         std::string webline;
@@ -745,8 +767,21 @@ void produce_column(void)
             {
                 line4found = false;
             }
-            /*cout << sku << "\n";*/;
+            /*std::cout << sku << "\n";*/;
             produce_tag(order_id, asin, sku, pet_name, line1, line2, line3, line4, line1found, line2found, line3found, line4found, lines_found, start_index, true, quantity);
+            lines_found = 0;
+            line1found = false;
+            line2found = false;
+            line3found = false;
+            line4found = false;
+            pet_name = "";
+            line1 = "";
+            line2 = "";
+            line3 = "";
+            line4 = "";
+            quantity = false;
+            sku = "";
+            order_id = "";
         }
         webdata.close();
         /*if (remove(webfname.c_str()) != 0)
@@ -1460,7 +1495,7 @@ void produce_column(void)
     automate << "msgbox, TagNo: %inc% Color: %color% Size: %size% SizeNo: %sizeinc%" << "\n";
     automate << "return" << "\n";
 
-    cout << "done\n";
+    std::cout << "done\n";
 }
 
 void produce_tag(string order_id, string asin, string sku, string pet_name, string line1, string line2, string line3, string line4, bool line1found, bool line2found, bool line3found, bool line4found, int lines_found, int start_index, bool website, bool quantity)

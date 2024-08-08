@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "macos-clang-arm64",
+            "name": "windows-gcc-x64",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -12,24 +12,23 @@
             ],
             "cStandard": "${default}",
             "cppStandard": "${default}",
-            "intelliSenseMode": "macos-gcc-x64",
-            "compilerPath": "/usr/bin/gcc"
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/gcc.exe"
         },
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${vcpkgRoot}/x86-windows/include",
-                "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.22621.0/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "cStandard": "c17",
-            "cppStandard": "gnu++17",
-            "intelliSenseMode": "${default}"
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "${default}",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Tools/MSVC/14.40.33807/bin/Hostarm64/x64/cl.exe"
         }
     ],
     "version": 4
